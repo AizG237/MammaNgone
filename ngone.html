@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamma Ngone | Authentic Cameroonian Flavors</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config for Custom Colors and Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#2C1E16',    // Deep coffee brown
+                            primary: '#D4AF37', // Honey gold
+                            accent: '#8B4513',  // Spice brown
+                            light: '#FDFBF7',   // Off-white background
+                            whatsapp: '#25D366' // WhatsApp Green
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animations and Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FDFBF7;
+            color: #2C1E16;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: '"Playfair Display"', serif;
+        }
+
+        /* Hero Overlay */
+        .hero-overlay {
+            background: linear-gradient(rgba(44, 30, 22, 0.7), rgba(44, 30, 22, 0.5));
+        }
+
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.2s; }
+        .reveal-delay-2 { transition-delay: 0.4s; }
+        .reveal-delay-3 { transition-delay: 0.6s; }
+
+        /* Product Card Hover Effect */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .product-image {
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="antialiased text-brand-dark">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="font-serif text-2xl font-bold text-brand-dark tracking-wider">
+                        Mamma<span class="text-brand-primary">Ngone</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-brand-dark hover:text-brand-primary font-medium transition">Home</a>
+                    <a href="#about" class="text-brand-dark hover:text-brand-primary font-medium transition">About Us</a>
+                    <a href="#products" class="text-brand-dark hover:text-brand-primary font-medium transition">Products</a>
+                    <a href="#testimonials" class="text-brand-dark hover:text-brand-primary font-medium transition">Testimonials</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full bg-brand-dark text-white hover:bg-brand-accent transition shadow-lg">Contact Us</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-primary focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-brand-dark hover:text-brand-primary">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-brand-dark hover:text-brand-primary">About Us</a>
+                <a href="#products" class="block px-3 py-2 text-base font-medium text-brand-dark hover:text-brand-primary">Products</a>
+                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-brand-dark hover:text-brand-primary">Testimonials</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-brand-whatsapp"><i class="fab fa-whatsapp mr-2"></i>Contact via WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative h-screen flex items-center justify-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Assorted spices and coffee" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16 reveal">
+            <p class="text-brand-primary font-medium tracking-widest uppercase mb-4 text-sm md:text-base">100% Natural • From Douala to the World</p>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                Authentic Cameroonian <span class="text-brand-primary italic">Flavors</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">
+                Experience the rich heritage of Cameroon through our pure natural honey, aromatic spices, and bold coffee blends. Carefully sourced, lovingly prepared.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="#products" class="px-8 py-4 bg-brand-primary text-brand-dark font-semibold rounded-full hover:bg-yellow-500 transition shadow-xl transform hover:-translate-y-1">
+                    Explore Our Products
+                </a>
+                <a href="#about" class="px-8 py-4 bg-transparent border border-white text-white font-semibold rounded-full hover:bg-white hover:text-brand-dark transition">
+                    Our Story
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 md:py-32 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Image -->
+                <div class="w-full lg:w-1/2 relative reveal">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://tse1.mm.bing.net/th/id/OIP.GG1p37Zc6lGJmXwRsrKnngHaFM?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Mamma Ngone" class="w-full h-auto object-cover object-center" style="max-height: 600px;" />
+                        <div class="absolute inset-0 border-4 border-brand-primary rounded-2xl transform translate-x-4 translate-y-4 -z-10"></div>
+                    </div>
+                </div>
+                
+                <!-- Text -->
+                <div class="w-full lg:w-1/2 reveal reveal-delay-1">
+                    <h4 class="text-brand-accent font-semibold tracking-wider uppercase mb-2">About Mamma Ngone</h4>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 font-serif">Bringing the Heart of Douala to Your Table.</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Based in the vibrant city of Douala, Mamma Ngone has dedicated her life to unearthing the most authentic, natural treasures of Cameroon. What started as a small local stall has blossomed into a bridge connecting the rich soils of our homeland with the global diaspora.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        We believe in purity. Our forest honey is raw and unpasteurized, our Penja pepper is globally renowned, and our coffee is roasted to capture the morning spirit of the highlands. Whether you are a local resident or miles away from home, we deliver a taste of nostalgia and wellness directly to you.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="text-4xl font-bold text-brand-primary mb-2 font-serif">100%</h4>
+                            <p class="text-sm text-gray-500 font-medium uppercase tracking-wide">Natural & Organic</p>
+                        </div>
+                        <div>
+                            <h4 class="text-4xl font-bold text-brand-primary mb-2 font-serif">🌍</h4>
+                            <p class="text-sm text-gray-500 font-medium uppercase tracking-wide">Worldwide Shipping</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h4 class="text-brand-accent font-semibold tracking-wider uppercase mb-2">Our Offerings</h4>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif">Nature's Best, Curated for You</h2>
+                <p class="text-gray-600">Discover our premium selection of natural products. Order easily via WhatsApp for fast local delivery in Douala or international shipping.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Product 1: Honey -->
+                <div class="product-card bg-brand-light rounded-2xl overflow-hidden reveal">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://tiimg.tistatic.com/fp/2/008/629/pure-forest-honey-873.jpg" alt="Pure Forest Honey" class="product-image w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold shadow-md text-brand-dark">
+                            Bestseller
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold font-serif">Pure Forest Honey</h3>
+                            <div class="text-right">
+                                <span class="block text-lg font-bold text-brand-accent">5,000 FCFA</span>
+                                <span class="block text-xs text-gray-500">(~ $8.50 USD)</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Harvested deep within the Cameroonian rainforests. This raw, unpasteurized honey is rich in antioxidants, soothes the throat, and acts as a perfect natural sweetener. A golden drop of health!
+                        </p>
+                        <button onclick="orderViaWhatsApp('Pure Forest Honey', '5000 FCFA')" class="w-full flex justify-center items-center py-3 px-4 bg-brand-whatsapp text-white rounded-xl font-medium hover:bg-green-600 transition shadow-lg">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i> Order on WhatsApp
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2: Spices -->
+                <div class="product-card bg-brand-light rounded-2xl overflow-hidden reveal reveal-delay-1">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Authentic Spice Blends" class="product-image w-full h-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold font-serif">Penja White Pepper & Spices</h3>
+                            <div class="text-right">
+                                <span class="block text-lg font-bold text-brand-accent">3,500 FCFA</span>
+                                <span class="block text-xs text-gray-500">(~ $6.00 USD)</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Featuring the world-renowned Penja white pepper and Mamma's secret traditional blends. Elevate your Ndolé, grilled fish, and daily meals with authentic Douala flavor.
+                        </p>
+                        <button onclick="orderViaWhatsApp('Penja Pepper & Spice Blend', '3500 FCFA')" class="w-full flex justify-center items-center py-3 px-4 bg-brand-whatsapp text-white rounded-xl font-medium hover:bg-green-600 transition shadow-lg">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i> Order on WhatsApp
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3: Coffee -->
+                <div class="product-card bg-brand-light rounded-2xl overflow-hidden reveal reveal-delay-2">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Highland Roasted Coffee" class="product-image w-full h-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold font-serif">Highland Roasted Coffee</h3>
+                            <div class="text-right">
+                                <span class="block text-lg font-bold text-brand-accent">4,500 FCFA</span>
+                                <span class="block text-xs text-gray-500">(~ $7.50 USD)</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Grown in the volcanic soils of Western Cameroon and roasted to perfection. A bold, aromatic Arabica/Robusta blend that energizes your day and brings comfort to your soul.
+                        </p>
+                        <button onclick="orderViaWhatsApp('Highland Roasted Coffee', '4500 FCFA')" class="w-full flex justify-center items-center py-3 px-4 bg-brand-whatsapp text-white rounded-xl font-medium hover:bg-green-600 transition shadow-lg">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i> Order on WhatsApp
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h4 class="text-brand-primary font-semibold tracking-wider uppercase mb-2">Customer Stories</h4>
+                <h2 class="text-3xl md:text-4xl font-bold font-serif">What Our Family Says</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm reveal">
+                    <div class="flex text-brand-primary mb-4 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="italic text-gray-300 mb-6">"The honey is just like what I used to have back home in the village! It's pure, thick, and tastes amazing. Fast delivery to Paris, totally recommend it to the diaspora."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center font-bold text-xl mr-4">A</div>
+                        <div>
+                            <h5 class="font-semibold">Amina T.</h5>
+                            <p class="text-xs text-gray-400">Paris, France (Diaspora)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm reveal reveal-delay-1">
+                    <div class="flex text-brand-primary mb-4 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="italic text-gray-300 mb-6">"Mamma Ngone's spices are the secret to my Sunday Ndolé. I buy from her shop in Douala every month. Simply the best quality you can find in the local market."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center font-bold text-xl mr-4 text-brand-dark">P</div>
+                        <div>
+                            <h5 class="font-semibold">Paul E.</h5>
+                            <p class="text-xs text-gray-400">Douala, Cameroon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm reveal reveal-delay-2">
+                    <div class="flex text-brand-primary mb-4 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="italic text-gray-300 mb-6">"The coffee blend wakes me up like nothing else. It has this rich, earthy flavor. Ordering via WhatsApp was super easy, and customer service is very warm."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center font-bold text-xl mr-4">S</div>
+                        <div>
+                            <h5 class="font-semibold">Sarah M.</h5>
+                            <p class="text-xs text-gray-400">Washington DC, USA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="bg-brand-light pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <!-- Brand Info -->
+                <div class="col-span-1 lg:col-span-2 reveal">
+                    <a href="#home" class="font-serif text-3xl font-bold text-brand-dark tracking-wider mb-6 inline-block">
+                        Mamma<span class="text-brand-primary">Ngone</span>
+                    </a>
+                    <p class="text-gray-600 mb-6 max-w-md">
+                        Your trusted source for 100% natural, authentic Cameroonian products. From our family in Douala directly to your kitchen, wherever you are in the world.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-primary transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-primary transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-primary transition"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="reveal reveal-delay-1">
+                    <h4 class="font-bold text-lg mb-6 font-serif">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><a href="#home" class="hover:text-brand-primary transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-brand-primary transition">Our Story</a></li>
+                        <li><a href="#products" class="hover:text-brand-primary transition">Shop Products</a></li>
+                        <li><a href="#testimonials" class="hover:text-brand-primary transition">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="reveal reveal-delay-2">
+                    <h4 class="font-bold text-lg mb-6 font-serif">Contact Us</h4>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-brand-primary"></i>
+                            <span>Akwa, Douala<br>Littoral Region, Cameroon</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-brand-primary"></i>
+                            <a href="mailto:hello@mammangone.com" class="hover:text-brand-primary transition">hello@mammangone.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-3 text-brand-whatsapp text-lg"></i>
+                            <button onclick="orderViaWhatsApp('General Inquiry', '')" class="hover:text-brand-whatsapp font-medium transition">+237 600 000 000</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2024 Mamma Ngone's Naturals. All rights reserved.</p>
+                <p class="mt-2 md:mt-0">Designed with ❤️ for Cameroonian Commerce.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button (Fixed bottom right) -->
+    <button onclick="orderViaWhatsApp('General Inquiry', '')" class="fixed bottom-6 right-6 w-14 h-14 bg-brand-whatsapp text-white rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-transform z-50 animate-bounce" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // --- WhatsApp Integration ---
+        // Replace this number with Mamma Ngone's actual WhatsApp number (including country code, no '+')
+        const whatsappNumber = "237600000000"; 
+
+        function orderViaWhatsApp(productName, price) {
+            let message = "";
+            if(price !== "") {
+                message = `Hello Mamma Ngone! 👋\n\nI visited your website and I would like to order: *${productName}* (${price}).\n\nPlease let me know about availability and delivery options. Thank you!`;
+            } else {
+                message = `Hello Mamma Ngone! 👋\n\nI visited your website and I would like to get some more information about your products.`;
+            }
+            
+            // Encode the message for the URL
+            const encodedMessage = encodeURIComponent(message);
+            // Create the WhatsApp link
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            // Open in a new tab
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // --- Mobile Menu Toggle ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // --- Scroll Animations (Intersection Observer) ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: Stop observing once animated
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
